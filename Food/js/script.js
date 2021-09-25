@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Timer
 
-  const deadline = "2021-08-22";
+  const deadline = "2021-10-22";
 
   function getTimeRemeaning(endtime) {
     const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -92,6 +92,12 @@ window.addEventListener("DOMContentLoaded", () => {
     modal = document.querySelector(".modal"),
     closeButton = document.querySelector("[data-close]");
 
+  function showModal() {
+    modal.classList.add("show");
+    modal.classList.remove("hide");
+    document.body.classList.add("scroll__hidden");
+  }
+
   function closeModal() {
     modal.classList.add("hide");
     modal.classList.remove("show");
@@ -104,9 +110,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   modalButton.forEach((e) => {
     e.addEventListener("click", () => {
-      modal.classList.add("show");
-      modal.classList.remove("hide");
-      document.body.classList.add("scroll__hidden");
+      showModal();
     });
   });
   closeButton.addEventListener("click", () => {
@@ -122,6 +126,8 @@ window.addEventListener("DOMContentLoaded", () => {
       closeModal();
     }
   });
+
+  setTimeout(showModal, 5000);
 
   //  Classes
 
@@ -177,21 +183,74 @@ window.addEventListener("DOMContentLoaded", () => {
   ).render();
 
   new AddMenuItem(
-      'Меню “Премиум”',
-      'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
-      25,
-      'img/tabs/elite.jpg',
-      'elite',
-      '.menu .container'
+    'Меню “Премиум”',
+    'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+    25,
+    'img/tabs/elite.jpg',
+    'elite',
+    '.menu .container'
   ).render();
 
   new AddMenuItem(
-      'Меню "Постное"',
-      'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
-      18,
-      'img/tabs/post.jpg',
-      'post',
-      '.menu .container'
+    'Меню "Постное"',
+    'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+    18,
+    'img/tabs/post.jpg',
+    'post',
+    '.menu .container'
   ).render();
+
+  // Forms
+
+  const forms = document.querySelectorAll('form');
+
+  const message = {
+    loading: 'loading',
+    success: 'Thanks. We will call you back',
+    failure: 'something went wrong',
+  };
+
+  forms.forEach(item => {
+    postData(item);
+  });
+
+  function postData(form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      //  создаем блок на странице для отображения успешности отправки формы
+      const statusMessage = document.createElement('div');
+      statusMessage.classList.add('status');
+      statusMessage.textContent = message.loading;
+      form.append(statusMessage);
+
+      const request = new XMLHttpRequest();
+      request.open('POST', 'server.php');
+
+      request.setRequestHeader('Content-type', 'application/json');
+      const formData = new FormData(form);
+
+      const object = {};
+      formData.forEach(function (value, key) {
+        object[key] = value;
+      });
+      const json = JSON.stringify(object);
+      request.send(json);
+
+
+      request.addEventListener('load', () => {
+        if (request.status === 200) {
+          console.log(request.response);
+          statusMessage.textContent = message.success;
+          form.reset();
+          setTimeout(() => {
+            statusMessage.remove();
+          }, 2000);
+        } else {
+          statusMessage.textContent = message.failure;
+        }
+      });
+    });
+  }
 
 });
