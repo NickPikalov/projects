@@ -1,0 +1,20 @@
+h1 {
+  color: red;
+  font-size: 50px; }
+
+h2 {
+  color: blue; }
+
+.block {
+  background-color: #000; }
+  .block h3 {
+    color: green; }
+  .block_color {
+    background-color: #fff; }
+    .block_color button {
+      display: block;
+      width: 250px;
+      height: 200px;
+      background-color: red; }
+
+/*# sourceMappingURL=style.css.map */
