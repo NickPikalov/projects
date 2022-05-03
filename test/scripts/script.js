@@ -1,20 +1,15 @@
-'use strict';
+const decodeMorse = function (morseCode) {
+    let resultString = '';
+    //MORSE_CODE['']
+    let wordsArr = morseCode.split('   ');
+    wordsArr.forEach(word => {
+        word.split(' ').forEach(char => {
+            resultString += MORSE_CODE[char];
+        });
+        resultString += ' ';
+    });
+    return resultString.trim();
 
-function deepCount(arr) {
-    let counter = 0;
-
-    return counter;
 }
 
-console.log(deepCount([1, [2, []], 3]));
-
-
-function sayName() {
-    console.log(this); // да, здесь по идее должен быть undefined
-    console.log(this.name);
-}
-const user = {
-    name: 'john'
-};
-//но можно этой функции предать контекст с помощью call() или apply()
-sayName.call(user);
+console.log(decodeMorse('.... . -.--   .--- ..- -.. .'));
