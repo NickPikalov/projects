@@ -310,6 +310,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	//  Slider
 
 	const slides = document.querySelectorAll(".offer__slide"),
+		slider = document.querySelector('.offer__slider'),
 		prev = document.querySelector(".offer__slider-prev"),
 		next = document.querySelector(".offer__slider-next"),
 		total = document.querySelector("#total"),
@@ -331,6 +332,37 @@ window.addEventListener("DOMContentLoaded", () => {
 	// на всяк случ задаем ширину слайдам по ширине контейнера (поля) слайдов
 	slides.forEach((slide) => {
 		slide.style.width = width;
+	});
+
+	slider.style.position = 'relative';
+
+	const indicators = document.createElement('ol'),
+		dots = [];
+	indicators.classList.add('carousel-indicators');
+	slider.append(indicators);
+
+	for (let i = 0; i < slides.length; i++) {
+		const dot = document.createElement('li');
+		dot.setAttribute('data-slide-to', i + 1);
+		dot.classList.add('dot');
+		indicators.append(dot);
+		dots.push(dot);
+	}
+
+	function activeDotHighlite() {
+		dots.forEach(dot => dot.style.opacity = '.5');
+		dots[slideIndex - 1].style.opacity = '1';
+	}
+	activeDotHighlite();
+
+	indicators.addEventListener('click', e => {
+		if (e.target && e.target.tagName == 'LI') {
+			slideIndex = e.target.getAttribute('data-slide-to');
+			current.textContent = (slideIndex < 10) ? `0${slideIndex}` : slideIndex;
+			offset = +width.slice(0, -2) * (slideIndex - 1);
+			slidesField.style.transform = `translateX(-${offset}px)`;
+			activeDotHighlite();
+		}
 	});
 
 	// расширяем поле со слайдами и ставим картинки вряд
@@ -360,6 +392,8 @@ window.addEventListener("DOMContentLoaded", () => {
 		} else {
 			current.textContent = slideIndex;
 		}
+
+		activeDotHighlite();
 	});
 
 	prev.addEventListener("click", () => {
@@ -382,5 +416,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		} else {
 			current.textContent = slideIndex;
 		}
+
+		activeDotHighlite();
 	});
 });

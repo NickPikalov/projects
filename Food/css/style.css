@@ -771,3 +771,7 @@ a {
     opacity: .5;
     transition: opacity .6s ease;
 }
+
+.dot-active {
+    opacity: 1;
+}
