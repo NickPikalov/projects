@@ -354,16 +354,20 @@ window.addEventListener("DOMContentLoaded", () => {
 		dots[slideIndex - 1].style.opacity = '1';
 	}
 	activeDotHighlite();
-
+	// удаляем лишние px и % со значений размеров, полученных со страницы
+	function deleteNotDigits(str) {
+		return +str.replace(/\D/g, '');
+	}
 	indicators.addEventListener('click', e => {
 		if (e.target && e.target.tagName == 'LI') {
 			slideIndex = e.target.getAttribute('data-slide-to');
 			current.textContent = (slideIndex < 10) ? `0${slideIndex}` : slideIndex;
-			offset = +width.slice(0, -2) * (slideIndex - 1);
+			offset = deleteNotDigits(width) * (slideIndex - 1);
 			slidesField.style.transform = `translateX(-${offset}px)`;
 			activeDotHighlite();
 		}
 	});
+
 
 	// расширяем поле со слайдами и ставим картинки вряд
 	slidesField.style.cssText = `
@@ -373,11 +377,11 @@ window.addEventListener("DOMContentLoaded", () => {
 	slidesWrapper.style.overflow = "hidden";
 
 	next.addEventListener("click", () => {
-		if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+		if (offset == deleteNotDigits(width) * (slides.length - 1)) {
 			// если слайд последний
 			offset = 0;
 		} else {
-			offset += +width.slice(0, width.length - 2);
+			offset += deleteNotDigits(width);
 		}
 		slidesField.style.transform = `translateX(-${offset}px)`;
 
@@ -399,9 +403,9 @@ window.addEventListener("DOMContentLoaded", () => {
 	prev.addEventListener("click", () => {
 		if (offset == 0) {
 			//если слайд первый и мотаем влево, записываем в оффсет последний слайд
-			offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+			offset = deleteNotDigits(width) * (slides.length - 1);
 		} else {
-			offset -= +width.slice(0, width.length - 2);
+			offset -= deleteNotDigits(width);
 		}
 		slidesField.style.transform = `translateX(-${offset}px)`;
 
