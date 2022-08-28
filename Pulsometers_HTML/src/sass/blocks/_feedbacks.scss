@@ -1,0 +1,43 @@
+.feedbacks {
+    .title {
+        margin-bottom: 60px;
+    }
+    
+}
+
+.feedback {
+    margin-bottom: 60px;
+    display: flex;
+    &__image {
+        img {
+            width: 169px;
+            height: 169px;
+            border-radius: 100%;
+        }
+    }
+    &__content {
+        max-width: 690px;
+        padding-left: 60px;
+    }
+    &__header {
+        font-weight: 700;
+        font-size: 18px;
+        color: #0D0D0D;
+    }
+    &__subheader {
+        font-size: 14px;
+        line-height: 22px;
+        color: #646464;
+        font-weight: 500;
+    }
+    &__text {
+        margin-top: 10px;
+        color: #0D0D0D;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;
+        p {
+            margin-bottom: 12px;
+        }
+    }
+}

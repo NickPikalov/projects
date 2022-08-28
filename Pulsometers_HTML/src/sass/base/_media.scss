@@ -10,6 +10,17 @@
             font-size: 20px;
         }
     }
+    .carousel {
+        &__inner {
+            width: 800px;
+        }
+        .container {
+            width: 800px;
+        }
+    }
+    .catalog-item {
+        max-width: 280px;
+    }
 
 }
 
@@ -50,6 +61,34 @@
         .benefit {
             width: 205px;
         }
+    }
+
+    .carousel {
+        .container {
+            width: 700px;
+        }
+        .tns-item {
+            img {
+            max-width: 550px;
+            }
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+
+    }
+
+    .catalog {
+        &__content {
+            justify-content: space-around;
+        }
+    }
+
+    .feedback__content {
+        padding-left: 50px;
     }
 }
 
@@ -115,11 +154,61 @@
             width: 300px;
         }
     }
+
+    .consultation {
+        .title {
+            font-size: 28px;
+        }
+        &__descr {
+            font-size: 18px;
+        }
+    }
+
+    .carousel {
+        .tns-item {
+            img {
+            max-height: 200px;
+            }
+        }
+    }
+
+    .catalog {
+        &-item {
+            max-width: 240px;
+            &__subtitle {
+                font-size: 15px;
+            }
+            &__price {
+                font-size: 18px;
+            }
+                .button_mini {
+                    width: 90px;
+                    height: 30px
+                }
+        }
+    }
+
+    .feedback {
+        &__image {
+            padding-top: 10px;
+            img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        &__content {
+            padding-left: 40px;
+        }
+        &__text {
+            font-size: 14px;
+        }
+    }
+
 }
 
 @media (max-width: 575px) {
     .container {
-        max-width: 300px;
+        max-width: 280px;
 
     }
     .header {
@@ -140,7 +229,7 @@
     .promo {
         padding-bottom: 40px;
         &__header {
-            font-size: 29px;
+            font-size: 28px;
             line-height: 35px;
         }
         &__subheader {
@@ -148,16 +237,16 @@
             margin-top: 0;
         }
         &__icons {
-            width: 300px;
+            width: 100%;
             margin-top: 40px;
         }
         &__icon {
-            width: 90px;
+            width: 85px;
             font-size: 11px;
         }
         .button_main {
             font-size: 14px;
-            width: 220px;
+            width: 210px;
             height: 30px;
         }
         &__link {
@@ -168,14 +257,14 @@
     .benefits {
         padding-bottom: 50px;
         &__header {
-            font-size: 27px;
+            font-size: 26px;
         }
         &__wrapper {
             min-height: 600px;
             margin-top: 50px;
             flex-direction: column;
             .benefit {
-                width: 300px;
+                width: 100%;
                 &__header {
                     margin-top: 15px;
                     line-height: 18px;
@@ -186,4 +275,82 @@
             }
         }
     }
+
+    .consultation {
+        padding: 60px 0;
+        min-height: 600px;
+        .title {
+            font-size: 18px;
+        }
+        &__descr {
+            font-size: 16px;
+            margin-top: 18px;
+        }
+        form {
+            width: 280px;
+            input {
+                height: 45px;
+            }
+            .button_submit {
+                height: 50px;
+            }
+        }
+    }
+
+    .carousel {
+        .prev, .next {
+            display: none;
+        }
+        .tns-item {
+            img {
+            max-width: 280px;
+            }
+        }
+    }
+
+    .catalog {
+        padding-bottom: 70px;
+        .title {
+            font-size: 26px;
+        }
+        &__tabs {
+            margin-top: 50px;
+            flex-direction: column;
+            height: 140px;
+            justify-content: space-between;
+        }
+        &__tab {
+            width: 200px;
+            height: 40px;
+            line-height: 38px;
+        }
+        &__content {
+            .catalog-item:nth-child(n+3) {
+                display: none;
+            }
+        }
+        &__more {
+            display: block;
+        }
+    }
+
+    .feedbacks {
+        .title {
+            font-size: 26px;
+        }
+    }
+    .feedback {
+        flex-direction: column;
+        align-items: center;
+        &__content {
+            padding-left: 0;
+        }
+        &__header, &__subheader {
+            text-align: center;
+        }
+        &__header {
+            margin-top: 5px;
+        }
+    }
+
 }

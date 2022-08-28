@@ -165,5 +165,18 @@
             }
         }
     }
+    &__more {
+        display: none;
+        margin-top: 17px;
+        font-size: 14px;
+        color: $button-color;
+        font-weight: 500;
+        text-decoration: underline;
+        text-align: center;
+        text-transform: uppercase;
+        &:hover {
+            color: $button-color;
+        }
+    }
     
 }
