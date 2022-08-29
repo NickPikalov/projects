@@ -1,4 +1,5 @@
 .overlay {
+    display: none;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -22,6 +23,7 @@
         font-size: 40px;
         line-height: 21px;
         color: $button-color;
+        cursor: pointer;
     }
     &__subtitle, &__descr {
         font-size: 18px;
@@ -33,4 +35,11 @@
         font-size: 14px;
         font-weight: 500;
     }
+    &_mini {
+        min-height: 140px;
+    }
+}
+
+#consultation, #order, #thanks {
+    display: none;
 }
